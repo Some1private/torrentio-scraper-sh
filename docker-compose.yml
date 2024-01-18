@@ -1,8 +1,9 @@
-version: '3'
+version: '3.9'
+name: torrentio-sh
 
 services:
   mongodb:
-    restart: always
+    restart: unless-stopped
     image: docker.io/bitnami/mongodb:7.0
     ports:
       - "27017:27017"
@@ -13,7 +14,7 @@ services:
 
   scraper:
     build: ./scraper
-    restart: always
+    restart: unless-stopped
     ports:
       - "7001:7001"
     environment:
@@ -26,7 +27,7 @@ services:
 
   torrentio:
     build: ./addon
-    restart: always
+    restart: unless-stopped
     ports:
       - "7000:7000"
     environment:
@@ -52,6 +53,7 @@ services:
 
   postgres:
     image: postgres:14-alpine
+    restart: unless-stopped
     ports:
       - 5432:5432
     volumes:
