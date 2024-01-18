@@ -8,7 +8,7 @@ const { parseSize } = require("../scraperHelper");
 
 const defaultProxies = [
   'https://torrentgalaxy.to',
-  'https://torrentgalaxy.mx',
+  //'https://torrentgalaxy.mx'
 ];
 const defaultTimeout = 10000;
 
