@@ -7,7 +7,7 @@ const { getRandomUserAgent } = require('./../../lib/requestHelper');
 const { parseSize } = require("../scraperHelper");
 
 const defaultProxies = [
-  'https://eztv.re'
+  'https://eztvx.to'
 ];
 const defaultTimeout = 120000;
 const minDelay = 3000;
