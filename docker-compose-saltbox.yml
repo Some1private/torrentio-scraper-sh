@@ -5,6 +5,9 @@ services:
     restart: unless-stopped
     image: docker.io/bitnami/mongodb:7.0.5
     container_name: torrentio-mongodb
+    environment: 
+      - PUID=1000
+      - PGID=1000
     ports:
       - "27017:27017"
     volumes:
@@ -15,6 +18,7 @@ services:
   scraper:
     build: ./scraper
     container_name: torrentio-scraper
+
     depends_on:
       - mongodb
       - postgres
@@ -22,6 +26,8 @@ services:
     ports:
       - "7001:7001"
     environment:
+      - PUID=1000
+      - PGID=1000
       - PORT=7001
       - MONGODB_URI=mongodb://mongodb:27017/torrentio
       - DATABASE_URI=postgres://postgres@postgres:5432/torrentio
@@ -39,6 +45,8 @@ services:
     ports:
       - "7000:7000"
     environment:
+      - PUID=1000
+      - PGID=1000
       - MONGODB_URI=mongodb://mongodb:27017/torrentio
       - DATABASE_URI=postgres://postgres@postgres:5432/torrentio
       - ENABLE_SYNC=true
@@ -68,6 +76,8 @@ services:
     volumes:
       - /opt/torrentio-sh/pg_data:/var/lib/postgresql/data
     environment:
+      - PUID=1000
+      - PGID=1000
       - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRES_USER=postgres
       - POSTGRES_DB=torrentio
