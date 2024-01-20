@@ -1,3 +1,9 @@
 **/node_modules
 **/npm-debug.log
 **/.env
+mongodb/
+pg_data/
+docker-compose*
+LICENSE
+Makefile
+README.md

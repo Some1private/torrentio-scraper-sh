@@ -3,3 +3,5 @@
 **.env
 .now
 /scraper/manual/examples.js
+mongodb/
+pg_data/
