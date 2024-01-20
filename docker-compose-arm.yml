@@ -3,12 +3,14 @@ version: '3.9'
 services:
   mongodb:
     restart: unless-stopped
-    image: bitnami/mongodb:7.0.5
-    container_name: torrentio-mongodb
+    image: arm64v8/mysql:8.0.36-oracle
+    container_name: torrentio-mysql
     ports:
-      - "27017:27017"
+      - "3306:3306"
     volumes:
-      - ./mongodb:/bitnami/mongodb
+      - ./mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     networks:
       - torrentio
 
@@ -20,7 +22,7 @@ services:
       - "7001:7001"
     environment:
       - PORT=7001
-      - MONGODB_URI=mongodb://mongodb:27017/torrentio
+      - MONGODB_URI=mysql://mysql:3306/torrentio
       - DATABASE_URI=postgres://postgres@postgres:5432/torrentio
       - ENABLE_SYNC=true
     networks:
@@ -33,7 +35,7 @@ services:
     ports:
       - "7000:7000"
     environment:
-      - MONGODB_URI=mongodb://mongodb:27017/torrentio
+      - MONGODB_URI=mysql://mysql:3306/torrentio
       - DATABASE_URI=postgres://postgres@postgres:5432/torrentio
       - ENABLE_SYNC=true
     networks: 
