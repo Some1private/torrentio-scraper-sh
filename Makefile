@@ -33,41 +33,41 @@ prepare-network:
 
 # Docker Compose Commands
 .PHONY: build
-build: prepare-network  ## Build or rebuild services
+build: prepare-network  ## Build or rebuild services from local compose
 	$(DOCKER_COMPOSE_CMD) -f $(LOCAL_COMPOSE_FILE) build
 
 .PHONY: up
-up: prepare-network  ## Create and start containers
+up: prepare-network  ## Create and start containers from local compose
 	$(DOCKER_COMPOSE_CMD) -f $(LOCAL_COMPOSE_FILE) up -d
 
 .PHONY: down
-down:  ## Stop and remove containers, networks
+down:  ## Stop and remove containers, networks from local compose
 	$(DOCKER_COMPOSE_CMD) -f $(LOCAL_COMPOSE_FILE) down
 
 .PHONY: restart
-restart: down up  ## Restart all services
+restart: down up  ## Restart all services from local compose
 
 .PHONY: logs
-logs:  ## View output from containers
+logs:  ## View output from containers from local compose
 	$(DOCKER_COMPOSE_CMD) -f $(LOCAL_COMPOSE_FILE) logs
 
 .PHONY: ps
-ps:  ## List containers
+ps:  ## List containers from local compose
 	$(DOCKER_COMPOSE_CMD) -f $(LOCAL_COMPOSE_FILE) ps
 
 .PHONY: run
-run: up  ## Set up everything and show logs
+run: up  ## Set up everything and show logs from local compose
 	@echo "Starting containers and showing logs..."
 	$(DOCKER_COMPOSE_CMD) -f $(LOCAL_COMPOSE_FILE) logs -f
 
 .PHONY: saltbox-run
-saltbox-run:  ## Start default docker-compose and show logs
-	@echo "Starting containers from default docker-compose.yml and showing logs..."
+saltbox-run:  ## Start saltbox docker-compose and show logs
+	@echo "Starting containers from saltbox docker-compose.yml and showing logs..."
 	$(DOCKER_COMPOSE_CMD) -f $(SALTBOX_COMPOSE_FILE) up -d
 	$(DOCKER_COMPOSE_CMD) -f $(SALTBOX_COMPOSE_FILE) logs -f
 
 .PHONY: saltbox-logs
-saltbox-logs:  ## Show logs for default docker-compose
-	@echo "Showing logs from default docker-compose.yml..."
+saltbox-logs:  ## Show logs for saltbox docker-compose
+	@echo "Showing logs from saltbox docker-compose.yml..."
 	$(DOCKER_COMPOSE_CMD) -f $(SALTBOX_COMPOSE_FILE) logs -f
 
