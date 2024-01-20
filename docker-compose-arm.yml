@@ -5,10 +5,13 @@ services:
     restart: unless-stopped
     image: arm64v8/mysql:8.0.36-oracle
     container_name: torrentio-mysql
+    environment:
+      - PUID=1000
+      - PGID=1000
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql_data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     networks:
@@ -28,6 +31,8 @@ services:
       - MONGODB_URI=mysql://mysql:3306/torrentio
       - DATABASE_URI=postgres://postgres@postgres:5432/torrentio
       - ENABLE_SYNC=true
+      - PUID=1000
+      - PGID=1000
     networks:
       - torrentio
 
@@ -44,6 +49,8 @@ services:
       - MONGODB_URI=mysql://mysql:3306/torrentio
       - DATABASE_URI=postgres://postgres@postgres:5432/torrentio
       - ENABLE_SYNC=true
+      - PUID=1000
+      - PGID=1000
     networks: 
       - torrentio
 
@@ -59,9 +66,14 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRES_USER=postgres
       - POSTGRES_DB=torrentio
+      - PUID=1000
+      - PGID=1000
     networks: 
       - torrentio
 
 networks: 
   torrentio:
     external: true
+
+volumes:
+  mysql-data:
