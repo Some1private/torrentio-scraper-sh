@@ -17,10 +17,12 @@ const OndeBaixa = require('../scrapers/ondebaixa/ondebaixa_scraper');
 const AnimesTorrent = require('../scrapers/animestorrent/animestorrent_scraper')
 const DarkMahou = require('../scrapers/darkmahou/darkmahou_scraper')
 const torrent9Scraper = require('../scrapers/torrent9/torrent9_scraper');
+const KickassScraper = require('../scrapers/kickass/kickass_scraper');
 
 module.exports = [
   { scraper: ytsScraper, name: ytsScraper.NAME, cron: '0 0 */4 ? * *' },
   { scraper: ytsFullScraper, name: ytsFullScraper.NAME, cron: '0 0 0 * * 0' },
+  { scraper: KickassScraper, name: KickassScraper.NAME, cron: '0 0 */4 ? * *' },
   { scraper: eztvScraper, name: eztvScraper.NAME, cron: '0 0 */4 ? * *' },
   { scraper: nyaaSiScraper, name: nyaaSiScraper.NAME, cron: '0 0 */4 ? * *' },
   { scraper: nyaaPantsuScraper, name: nyaaPantsuScraper.NAME, cron: '0 0 */4 ? * *' },
