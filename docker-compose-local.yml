@@ -11,7 +11,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mango-data:/bitnami/mongodb
+      - mongo-data:/bitnami/mongodb
     networks:
       - torrentio
 
