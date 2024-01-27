@@ -7,7 +7,7 @@ const { getRandomUserAgent } = require('./../../lib/requestHelper');
 const { parseSize } = require("../scraperHelper");
 
 const defaultProxies = [
-  'https://eztvx.to'
+  'https://eztv.re'
 ];
 const defaultTimeout = 120000;
 const minDelay = 3000;
@@ -76,7 +76,8 @@ function parseResults(results) {
 function parseTorrent(torrent) {
   return {
     name: torrent.title.replace(/EZTV$/, ''),
-    torrentId: torrent.episode_url.replace(/.*\/ep\//, ''),
+    // torrentId: torrent.episode_url.replace(/.*\/ep\//, ''),
+    torrentId: torrent.id,
     infoHash: torrent.hash.trim().toLowerCase(),
     magnetLink: torrent.magnet_url,
     torrentLink: torrent.torrent_url,
